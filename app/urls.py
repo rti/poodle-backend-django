@@ -4,7 +4,7 @@ from rest_framework.authtoken import views as authtoken_views
 from . import views as app_views
 
 router = routers.DefaultRouter()
-router.register('items', app_views.ItemViewSet)
+router.register('queries', app_views.QueryViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
