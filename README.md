@@ -1,6 +1,8 @@
 # poodle-backend-django
 
-An opinionated project template for creating REST APIs
+Poodle is a scheduling tool. 
+
+This repository contains the REST API backend implemented in django.
 
 ## Based on
 
