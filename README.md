@@ -1,17 +1,10 @@
-# django-rest-api
+# poodle-backend-django
 
 An opinionated project template for creating REST APIs
 
 ## Based on
 
- - Django https://www.djangoproject.com/
- - Django REST framework https://www.django-rest-framework.org/
- - Django CORS Headers https://pypi.org/project/django-cors-headers/
- - Token Auth https://www.django-rest-framework.org/api-guide/authentication/#tokenauthentication
- - Postgres https://www.postgresql.org/
- - Docker https://www.docker.com/
- - Docker Compose https://docs.docker.com/compose/
- - Vim Rest Console https://github.com/diepm/vim-rest-console
+ - https://github.com/rti/django-rest-api
 
 ## How to use
 
@@ -39,14 +32,3 @@ Direct your browser to http://127.0.0.1:8000/admin/
 ```shell
 docker-compose run --rm django python manage.py test --noinput --failfast
 ```
-## TODO
-
- - Production setup
-   - Docker: include source in container, remove volume
-   - Docker: postgres auth
-   - Docker: nginx proxy, SSL
-   - Django: disable debug mode
-   - Django: set SECRET_KEY
-   - Django: configure CORS_ALLOWED_ORIGINS
-
-  
