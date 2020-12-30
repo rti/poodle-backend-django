@@ -25,7 +25,9 @@ class OptionSerializer(serializers.ModelSerializer):
 
 class QuerySerializer(serializers.ModelSerializer):
     options = OptionSerializer(many=True, read_only=True)
+    #  choices = ChoiceSerializer(many=True, read_only=True)
 
     class Meta:
         model = Query
         fields = ('id', 'name', 'options')
+        #  fields = ('id', 'name', 'options', 'choices')

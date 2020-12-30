@@ -7,6 +7,10 @@ class Query(models.Model):
     def __str__(self):
         return self.name
 
+    def choices(self):
+        return [choice for option in self.options.all()
+                for choice in option.choices.all()]
+
     class Meta:
         verbose_name_plural = "Queries"
 
