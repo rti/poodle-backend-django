@@ -10,10 +10,25 @@ http://127.0.0.1:8000
 HEAD /app/?format=json
 
 http://127.0.0.1:8000
+POST /app/?format=json
+
+http://127.0.0.1:8000
 OPTIONS /app/?format=json
 
 http://127.0.0.1:8000
-GET /app/items/?format=json
+GET /app/queries/?format=json
+
+http://127.0.0.1:8000
+GET /app/queries/1/?format=json
+
+http://127.0.0.1:8000
+OPTIONS /app/queries/1/?format=json
+
+http://127.0.0.1:8000
+GET /app/queries/2/?format=json
+
+http://127.0.0.1:8000
+GET /app/queries/2/?format=json
 
 http://127.0.0.1:8000
 Content-Type: application/json; charset=utf-8
