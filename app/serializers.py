@@ -9,7 +9,7 @@ class EmbeddedChoiceSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Choice
-        fields = ['id', 'attendee', 'status']
+        fields = ['id', 'attendee', 'attendee_id', 'status']
 
 
 class EmbeddedOptionSerializer(serializers.ModelSerializer):
