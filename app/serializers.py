@@ -3,16 +3,21 @@ from rest_framework import serializers
 from .models import Query, Option, Choice
 
 
-class ChoiceSerializer(serializers.ModelSerializer):
+class EmbeddedChoiceSerializer(serializers.ModelSerializer):
     attendee = serializers.SlugRelatedField(read_only=True, slug_field='name')
+    status = serializers.CharField(read_only=True)
 
     class Meta:
         model = Choice
         fields = ['id', 'attendee', 'status']
 
 
-class OptionSerializer(serializers.ModelSerializer):
-    choices = ChoiceSerializer(many=True, read_only=True)
+class EmbeddedOptionSerializer(serializers.ModelSerializer):
+    choices = EmbeddedChoiceSerializer(many=True, read_only=True)
+    begin_date = serializers.DateField(read_only=True)
+    begin_time = serializers.TimeField(read_only=True)
+    end_date = serializers.DateField(read_only=True)
+    end_time = serializers.TimeField(read_only=True)
 
     def begin_time_short(self):
         return self.begin_time.strftime('%H:%M')
@@ -24,7 +29,7 @@ class OptionSerializer(serializers.ModelSerializer):
 
 
 class QuerySerializer(serializers.ModelSerializer):
-    options = OptionSerializer(many=True, read_only=True)
+    options = EmbeddedOptionSerializer(many=True, read_only=True)
     #  choices = ChoiceSerializer(many=True, read_only=True)
 
     class Meta:
