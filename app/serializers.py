@@ -24,8 +24,8 @@ class EmbeddedOptionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Option
-        fields = ['id', 'begin_date', 'begin_time_short',
-                  'end_date', 'end_time_short', 'choices']
+        fields = ['id', 'begin_date', 'begin_time',
+                  'end_date', 'end_time', 'choices']
 
 
 class QuerySerializer(serializers.ModelSerializer):
