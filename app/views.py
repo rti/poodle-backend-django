@@ -1,10 +1,14 @@
-from rest_framework import viewsets  # , permissions
+from rest_framework import viewsets, mixins  # , permissions
 
 from .serializers import QuerySerializer
 from .models import Query
 
 
-class QueryViewSet(viewsets.ModelViewSet):
+class QueryViewSet(mixins.CreateModelMixin,
+                   mixins.RetrieveModelMixin,
+                   mixins.UpdateModelMixin,
+                   mixins.DestroyModelMixin,
+                   viewsets.GenericViewSet):
     queryset = Query.objects.all()
     serializer_class = QuerySerializer
 
