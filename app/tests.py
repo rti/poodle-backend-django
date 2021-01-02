@@ -124,7 +124,13 @@ class QueryApiAnonTest(APITestCase):
         json = response.json()
         self.assertIsNotNone(json)
         self.assertIsNotNone(json['queries'])
+        self.assertIsNotNone(json['options'])
+        self.assertIsNotNone(json['choices'])
+        self.assertIsNotNone(json['attendees'])
         self.assertTrue(match(r'^https?://[a-zA-Z-.]+/app/queries/\?format=json$', json['queries']))
+        self.assertTrue(match(r'^https?://[a-zA-Z-.]+/app/options/\?format=json$', json['options']))
+        self.assertTrue(match(r'^https?://[a-zA-Z-.]+/app/choices/\?format=json$', json['choices']))
+        self.assertTrue(match(r'^https?://[a-zA-Z-.]+/app/attendees/\?format=json$', json['attendees']))
 
     def test_post_root(self):
         response = self.client.post('/app/', {}, format='json')
