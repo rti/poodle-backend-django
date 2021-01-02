@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Query, Option, Choice
+from .models import Query, Option, Choice, Attendee
 
 
 class EmbeddedChoiceSerializer(serializers.ModelSerializer):
@@ -19,9 +19,6 @@ class EmbeddedOptionSerializer(serializers.ModelSerializer):
     end_date = serializers.DateField(read_only=True)
     end_time = serializers.TimeField(read_only=True)
 
-    def begin_time_short(self):
-        return self.begin_time.strftime('%H:%M')
-
     class Meta:
         model = Option
         fields = ['id', 'begin_date', 'begin_time',
@@ -36,3 +33,27 @@ class QuerySerializer(serializers.ModelSerializer):
         model = Query
         fields = ('id', 'name', 'options')
         #  fields = ('id', 'name', 'options', 'choices')
+
+
+class OptionSerializer(serializers.ModelSerializer):
+    query_id = serializers.IntegerField()
+
+    class Meta:
+        model = Option
+        fields = ['id', 'begin_date', 'begin_time', 'end_date', 'end_time', 'query_id']
+
+
+class ChoiceSerializer(serializers.ModelSerializer):
+    attendee = serializers.SlugRelatedField(read_only=True, slug_field='name')
+    attendee_id = serializers.IntegerField()
+    option_id = serializers.IntegerField()
+
+    class Meta:
+        model = Choice
+        fields = ['id', 'attendee', 'attendee_id', 'option_id', 'status']
+
+
+class AttendeeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Attendee
+        fields = ['id', 'name']

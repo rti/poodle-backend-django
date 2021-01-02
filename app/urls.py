@@ -5,6 +5,9 @@ from . import views as app_views
 
 router = routers.DefaultRouter()
 router.register('queries', app_views.QueryViewSet)
+router.register('options', app_views.OptionViewSet)
+router.register('choices', app_views.ChoiceViewSet)
+router.register('attendees', app_views.AttendeeViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
