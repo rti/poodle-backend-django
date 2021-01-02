@@ -19,6 +19,9 @@ http://127.0.0.1:8000
 GET /app/queries/?format=json
 
 http://127.0.0.1:8000
+OPTIONS /app/queries/?format=json
+
+http://127.0.0.1:8000
 GET /app/queries/1/?format=json
 
 http://127.0.0.1:8000
@@ -29,6 +32,19 @@ GET /app/queries/2/?format=json
 
 http://127.0.0.1:8000
 GET /app/queries/2/?format=json
+
+http://127.0.0.1:8000
+GET /app/options/1/?format=json
+
+http://127.0.0.1:8000
+Content-Type: application/json; charset=utf-8
+PATCH /app/options/1/?format=json
+{
+  "start_time": "18:00:00"
+}
+
+http://127.0.0.1:8000
+OPTIONS /app/options/1/?format=json
 
 http://127.0.0.1:8000
 Content-Type: application/json; charset=utf-8
