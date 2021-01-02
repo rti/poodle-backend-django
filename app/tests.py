@@ -97,6 +97,8 @@ class OptionModelTest(TestCase):
 
 
 class QueryApiAnonTest(APITestCase):
+    # TODO: add some fail tests, e.g. invalid ids
+
     @classmethod
     def setUpTestData(cls):
         cls.query = Query.objects.create(name='When can we meet?')
@@ -106,7 +108,7 @@ class QueryApiAnonTest(APITestCase):
                 Option.objects.create(begin_date='2021-01-03', begin_time='18:00:00', end_date='2021-01-04', end_time='03:00:00', query=cls.query), ]
         cls.attendees = [
                 Attendee.objects.create(name='Alisa'),
-                Attendee.objects.create(name='Asisa'), 
+                Attendee.objects.create(name='Asisa'),
                 Attendee.objects.create(name='Takatuka'), ]
         cls.choices = [
                 Choice.objects.create(option=cls.options[0], attendee=cls.attendees[0], status='Y'),
@@ -152,7 +154,6 @@ class QueryApiAnonTest(APITestCase):
         response = self.client.options('/app/', {'format': 'json'})
         self.assertEqual(response.status_code, 200)
         # TODO: implement me
-        pass
 
     # query list --------------------------------------------------------------
     def test_get_query_list(self):
@@ -186,7 +187,6 @@ class QueryApiAnonTest(APITestCase):
         response = self.client.options('/app/queries/', {'format': 'json'})
         self.assertEqual(response.status_code, 200)
         # TODO: implement me
-        pass
 
     # query item --------------------------------------------------------------
     def test_get_query_item(self):
@@ -387,7 +387,6 @@ class QueryApiAnonTest(APITestCase):
         response = self.client.options('/app/queries/' + str(self.query.id) + '/', {'format': 'json'})
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         # TODO: implement me
-        pass
 
     # option list -------------------------------------------------------------
     def test_get_option_list(self):
@@ -427,7 +426,6 @@ class QueryApiAnonTest(APITestCase):
         response = self.client.options('/app/options/', {'format': 'json'})
         self.assertEqual(response.status_code, 200)
         # TODO: implement me
-        pass
 
     # option item -------------------------------------------------------------
     def test_get_option_item(self):
@@ -479,7 +477,6 @@ class QueryApiAnonTest(APITestCase):
         self.assertEqual(json['begin_time'], '18:30:00')
         self.assertEqual(json['end_date'], '2021-01-02')
         self.assertEqual(json['end_time'], '03:00:00')
-        pass
 
     def test_delete_option_item(self):
         response = self.client.delete('/app/options/' + str(self.options[0].id) + '/', {'format': 'json'})
@@ -492,7 +489,6 @@ class QueryApiAnonTest(APITestCase):
         response = self.client.options('/app/options/' + str(self.options[0].id) + '/', {'format': 'json'})
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         # TODO: implement me
-        pass
 
     # choice list -------------------------------------------------------------
     def test_get_choice_list(self):
@@ -531,7 +527,6 @@ class QueryApiAnonTest(APITestCase):
         response = self.client.options('/app/options/', {'format': 'json'})
         self.assertEqual(response.status_code, 200)
         # TODO: implement me
-        pass
 
     # choice item -------------------------------------------------------------
     def test_get_choice_item(self):
