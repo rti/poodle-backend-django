@@ -1,0 +1,53 @@
+# vim-rest-console requests file
+
+http://127.0.0.1:8000
+GET /
+
+http://127.0.0.1:8000
+GET /app/?format=json
+
+http://127.0.0.1:8000
+HEAD /app/?format=json
+
+http://127.0.0.1:8000
+OPTIONS /app/?format=json
+
+http://127.0.0.1:8000
+GET /app/items/?format=json
+
+http://127.0.0.1:8000
+Content-Type: application/json; charset=utf-8
+POST /app/auth-token/
+{
+  "username": "user",
+  "password": "pass"
+}
+
+http://127.0.0.1:8000
+Authorization: Token YOURUSERTOKENHERE
+Content-Type: application/json; charset=utf-8
+POST /app/items/
+{
+  "name": "An Item"
+}
+
+http://127.0.0.1:8000
+Authorization: Token YOURUSERTOKENHERE
+Content-Type: application/json; charset=utf-8
+PUT /app/items/1/
+{
+  "name": "Another Item"
+}
+
+http://127.0.0.1:8000
+Authorization: Token YOURUSERTOKENHERE
+Content-Type: application/json; charset=utf-8
+PATCH /app/items/1/
+{
+  "name": "Changed Item"
+}
+
+http://127.0.0.1:8000
+Authorization: Token YOURUSERTOKENHERE
+DELETE /app/items/1/
+
