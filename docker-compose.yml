@@ -2,6 +2,7 @@ version: '3'
 
 volumes:
   postgres-data:
+  static:
 
 services:
   postgres:
@@ -16,13 +17,22 @@ services:
 
   django:
     build: .
-    volumes:
-      - .:/srv/project
+    # TODO: disable for production
+    # volumes:
+    #   - .:/srv/project
+    # command: python manage.py runserver 0.0.0.0:8000
+
+    command: gunicorn project.wsgi:application --bind 0.0.0.0:8000 --workers=4
+
     env_file:
       - project.env
-    command: python manage.py runserver 0.0.0.0:8000
+
     expose:
-      - 8000
+      - "8000"
+
+    volumes:
+      - static:/home/django/project/static
+
     depends_on:
       - postgres
 
@@ -30,9 +40,10 @@ services:
     image: nginx:mainline-alpine
     restart: always
     ports:
-      - 1337:80
+      - "1337:80"
     volumes:
       - ./nginx:/etc/nginx/conf.d
+      - static:/home/django/project/static
     depends_on:
       - django
 

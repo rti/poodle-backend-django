@@ -11,10 +11,12 @@ if [ "$DATABASE" = "postgres" ]; then
     echo "PostgreSQL started"
 fi
 
-# Make migrations and migrate the database.
-echo "Making migrations and migrating the database. "
+echo "Making migrations and migrating the database."
 python manage.py makemigrations app --noinput
 python manage.py migrate --noinput
+
+echo "Collecting static files."
+python manage.py collectstatic --noinput
 
 exec "$@"
 

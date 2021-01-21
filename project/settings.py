@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 from os import getenv
+from os.path import join
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +27,11 @@ SECRET_KEY = getenv('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # TODO: CHANGE FOR PRODUCTION
-DEBUG = True
+# The value of the DEBUG will be True by default, but will only be False if the
+# value of the DJANGO_DEBUG environment variable is set to False
+# https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Deployment
+# DEBUG = True
+# DEBUG = False
 
 # TODO: REVIEW FOR PRODUCTION
 ALLOWED_HOSTS = [
@@ -142,6 +147,5 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.1/howto/static-files/
-
 STATIC_URL = '/static/'
+STATIC_ROOT = join(BASE_DIR, 'static')
