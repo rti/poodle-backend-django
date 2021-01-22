@@ -7,44 +7,28 @@ volumes:
 services:
   postgres:
     image: postgres:latest
-    restart: always
-    env_file:
-      - project.env
+    expose:
+      - "5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data
-    # TODO: no expose here?
-
-  django:
-    build: .
-    restart: always
-
-    # development only
-    # command: python manage.py runserver 0.0.0.0:8000
-
-    # production only
-    command: gunicorn project.wsgi:application --bind 0.0.0.0:8000 --workers=4
-
     env_file:
       - project.env
 
+  django:
+    build:
+      context: .
     expose:
-      - 8000
-
+      - "8000"
     volumes:
       - static:/home/django/project/static
-      # development only
-      # - .:/home/django/project
-
+    env_file:
+      - project.env
     depends_on:
       - postgres
 
   nginx:
     build: nginx
-    restart: always
-    ports:
-      - 80:80
     volumes:
-      # - ./nginx:/etc/nginx/conf.d
       - static:/home/django/project/static
     depends_on:
       - django

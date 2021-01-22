@@ -1,0 +1,16 @@
+services:
+  postgres:
+    restart: always
+
+  django:
+    build:
+      target: production
+    command: gunicorn project.wsgi:application --bind 0.0.0.0:8000 --workers=4
+    restart: always
+
+  nginx:
+    restart: always
+    ports:
+      - "80:80"
+
+

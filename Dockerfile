@@ -1,13 +1,5 @@
 # thanks to https://blog.bitsacm.in/django-on-docker/
-FROM python:slim
-
-# these two environment variables prevent __pycache__/ files
-#ENV PYTHONUNBUFFERED 1
-#ENV PYTHONDONTWRITEBYTECODE 1
-
-# these two environment variables allow __pycache__/ files
-ENV PYTHONBUFFERED 1
-ENV PYTHONWRITEBYTECODE 1
+FROM python:slim as fundamental
 
 # entrypoint.sh is using netcat to wait for db to start up
 RUN apt-get update && apt-get install -y netcat
@@ -18,7 +10,7 @@ RUN useradd --user-group --create-home --no-log-init --shell /bin/bash django
 # project's src home directory
 ENV PROJECT_HOME=/home/django/project
 
-# create the staticfiles directory # TODO do we need static files?
+# create required directories
 RUN mkdir -p $PROJECT_HOME/static
 
 # cd to working dir
@@ -31,14 +23,41 @@ COPY requirements.txt .
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-# copy src into container # TODO: disable for development
-COPY . $PROJECT_HOME
+# start the entrypoint script
+ENTRYPOINT ["./entrypoint.sh"]
+
+#
+# development build target
+#
+FROM fundamental as development
+
+# setup python for development
+ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE 1
+
+# setup django for development
+ENV DJANGO_DEBUG True
+
+#
+# production build target
+#
+FROM fundamental as production
+
+# setup python for production
+ENV PYTHONBUFFERED 1
+ENV PYTHONWRITEBYTECODE 1
+
+# setup django for development
+ENV DJANGO_DEBUG False
+
+# copy src into container
+COPY app app
+COPY project project
+COPY manage.py .
+COPY entrypoint.sh .
 
 # adjust ownership
-RUN chown -R django:django $PROJECT_HOME
+RUN chown -R django:django .
 
 # drop privs
 USER django:django
-
-# start the entrypoint script
-ENTRYPOINT ["./entrypoint.sh"]

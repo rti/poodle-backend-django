@@ -26,8 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = getenv('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# TODO: change in project.env for production
-DEBUG = getenv('DJANGO_DEBUG') == True
+DEBUG = getenv('DJANGO_DEBUG') == 'True'
 
 # TODO: REVIEW FOR PRODUCTION
 ALLOWED_HOSTS = [

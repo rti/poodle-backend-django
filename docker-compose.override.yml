@@ -1,0 +1,13 @@
+services:
+  django:
+    build:
+      target: development
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/home/django/project
+
+  nginx:
+    build: nginx
+    ports:
+      - "8000:80"
+
