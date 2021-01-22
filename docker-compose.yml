@@ -6,7 +6,6 @@ volumes:
 
 services:
   postgres:
-    # TODO: alpine
     image: postgres:latest
     restart: always
     env_file:
@@ -17,6 +16,7 @@ services:
 
   django:
     build: .
+    restart: always
 
     # development only
     # command: python manage.py runserver 0.0.0.0:8000
@@ -28,7 +28,7 @@ services:
       - project.env
 
     expose:
-      - "8000"
+      - 8000
 
     volumes:
       - static:/home/django/project/static
@@ -39,12 +39,12 @@ services:
       - postgres
 
   nginx:
-    image: nginx:mainline-alpine
+    build: nginx
     restart: always
     ports:
-      - "1337:80"
+      - 80:80
     volumes:
-      - ./nginx:/etc/nginx/conf.d
+      # - ./nginx:/etc/nginx/conf.d
       - static:/home/django/project/static
     depends_on:
       - django
