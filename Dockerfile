@@ -9,9 +9,6 @@ FROM python:slim
 ENV PYTHONBUFFERED 1
 ENV PYTHONWRITEBYTECODE 1
 
-# disable default django debugging mode for production
-ENV DJANGO_DEBUG False
-
 # entrypoint.sh is using netcat to wait for db to start up
 RUN apt-get update && apt-get install -y netcat
 

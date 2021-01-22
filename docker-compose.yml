@@ -17,11 +17,11 @@ services:
 
   django:
     build: .
-    # TODO: disable for production
-    # volumes:
-    #   - .:/srv/project
+
+    # development only
     # command: python manage.py runserver 0.0.0.0:8000
 
+    # production only
     command: gunicorn project.wsgi:application --bind 0.0.0.0:8000 --workers=4
 
     env_file:
@@ -32,6 +32,8 @@ services:
 
     volumes:
       - static:/home/django/project/static
+      # development only
+      # - .:/home/django/project
 
     depends_on:
       - postgres

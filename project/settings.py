@@ -22,16 +22,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# TODO: CHANGE FOR PRODUCTION
+# TODO: change in project.env for production
 SECRET_KEY = getenv('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# TODO: CHANGE FOR PRODUCTION
-# The value of the DEBUG will be True by default, but will only be False if the
-# value of the DJANGO_DEBUG environment variable is set to False
-# https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Deployment
-# DEBUG = True
-# DEBUG = False
+# TODO: change in project.env for production
+DEBUG = getenv('DJANGO_DEBUG') == True
 
 # TODO: REVIEW FOR PRODUCTION
 ALLOWED_HOSTS = [
