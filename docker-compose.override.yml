@@ -7,7 +7,6 @@ services:
       - .:/home/django/project
 
   nginx:
-    build: nginx
     ports:
       - "8000:80"
       - "8443:443"
