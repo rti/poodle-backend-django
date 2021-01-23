@@ -3,6 +3,6 @@ FROM nginx:stable
 COPY certbot-ssl.conf /etc/nginx/conf.d/
 COPY default.conf /etc/nginx/conf.d/
 
-COPY entrypoint.sh /docker-entrypoint.d/99-setup-certs.sh
-RUN chmod a+x /docker-entrypoint.d/99-setup-certs.sh
+COPY 50-setup-certs.sh /docker-entrypoint.d
+RUN chmod a+x /docker-entrypoint.d/50-setup-certs.sh
 
