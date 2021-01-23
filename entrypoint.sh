@@ -18,5 +18,7 @@ python manage.py migrate --noinput
 echo "Collecting static files."
 python manage.py collectstatic --noinput
 
+echo "Done. "
+echo "Passing on to $@"
 exec "$@"
 
