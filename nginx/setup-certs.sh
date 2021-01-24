@@ -1,7 +1,7 @@
-#!/bin/bash
+#!/bin/sh
 
 set -e
-set -x
+# set -x
 
 DOMAIN_NAME=poodle.rtti.de
 
