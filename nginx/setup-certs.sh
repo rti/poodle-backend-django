@@ -33,12 +33,5 @@ else
   echo "### using existing $FILE_CHAIN and $FILE_KEY."
 fi
 
-# echo "### starting $@"
-# $@ &
-#
-# while true; do
-#   sleep 10
-#   echo "### reloading nginx to catch up with new certs..."
-#   nginx -s reload
-#   echo "### done"
-# done
+echo "### starting $@"
+exec $@
