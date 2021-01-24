@@ -3,7 +3,7 @@
 set -e
 # set -x
 
-DOMAIN_NAME=poodle.rtti.de
+DOMAIN_NAME=api.poodle.rtti.de
 
 PATH_LETSENCRYPT=/etc/letsencrypt
 
