@@ -3,11 +3,12 @@
 set -e
 # set -x
 
-SLEEP_BEFORE_RELOAD=10
+SLEEP_BEFORE_RELOAD=60
 
 watch_certs_and_reload() {
   while true; do
-    inotifywait -e create /etc/letsencrypt/live/api.poodle.rtti.de/;
+    # inotifywait -e create /etc/letsencrypt/live/api.poodle.rtti.de/;
+    inotifywait /etc/letsencrypt/live/;
     echo "cert change detected, waiting $SLEEP_BEFORE_RELOAD seconds before reload";
     sleep $SLEEP_BEFORE_RELOAD
     echo "reloading nginx";
