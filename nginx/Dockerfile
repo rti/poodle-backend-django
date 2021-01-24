@@ -4,7 +4,7 @@ RUN apt-get update && apt-get install -y inotify-tools \
       && apt-get remove --purge --auto-remove -y \
       && rm -rf /var/lib/apt/lists/* /etc/apt/sources.list.d/nginx.list
 
-COPY certbot-ssl.conf /etc/nginx/conf.d/
+COPY ssl.conf /etc/nginx/conf.d/
 COPY default.conf /etc/nginx/conf.d/
 
 COPY setup-certs.sh /
