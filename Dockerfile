@@ -2,7 +2,9 @@
 FROM python:slim as fundamental
 
 # entrypoint.sh is using netcat to wait for db to start up
-RUN apt-get update && apt-get install -y netcat
+RUN apt-get update && apt-get install -y netcat \
+      && apt-get remove --purge --auto-remove -y \
+      && rm -rf /var/lib/apt/lists/*
 
 # create an app user in the app group
 RUN useradd --user-group --create-home --no-log-init --shell /bin/bash django
