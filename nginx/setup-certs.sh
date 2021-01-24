@@ -17,21 +17,22 @@ SIZE_KEY=4096
 mkdir -p $PATH_LETSENCRYPT/live/$DOMAIN_NAME/
 
 if [ ! -e $FILE_DHPARAMS ]; then
-  echo "### generating $FILE_DHPARAMS..."
+  echo "Generating $FILE_DHPARAMS..."
   openssl dhparam -out $FILE_DHPARAMS $SIZE_DHPARAMS
-  echo "### done"
+  echo "Done."
 else
-  echo "### using existing $FILE_DHPARAMS."
+  echo "Using existing $FILE_DHPARAMS."
 fi
 
 if [ ! -e $FILE_KEY ] || [ ! -e $FILE_CHAIN ]; then
-  echo "### generating $FILE_CHAIN and $FILE_KEY..."
+  echo "Generating $FILE_CHAIN and $FILE_KEY..."
   openssl req -x509 -nodes -newkey rsa:$SIZE_KEY -days 1 \
     -keyout $FILE_KEY -out $FILE_CHAIN -subj "/CN=$DOMAIN_NAME"
-  echo "### done"
+  echo "Done."
 else
-  echo "### using existing $FILE_CHAIN and $FILE_KEY."
+  echo "Using existing $FILE_CHAIN and $FILE_KEY."
 fi
 
-echo "### starting $@"
-exec $@
+echo "Done."
+echo "Passing on to $@"
+exec "$@"

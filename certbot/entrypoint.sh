@@ -9,8 +9,8 @@ EMAIL="mail@rtti.de"
 RSA_KEY_SIZE=4096
 
 LETSENCRYPT_DIR="/etc/letsencrypt"
-CURRENT_CERTS_DIR="$LETSENCRYPT_DIR/live"
-CURRENT_CERT="$CURRENT_CERTS_DIR/$DOMAIN/fullchain.pem"
+CURRENT_CERTS_DIR="$LETSENCRYPT_DIR/live/$DOMAIN"
+CURRENT_CERT="$CURRENT_CERTS_DIR/fullchain.pem"
 
 wait_for_nginx() {
   while ! nc -z nginx 80; do
@@ -46,7 +46,7 @@ main() {
     echo "Ok, certificate is not self signed."
   fi
 
-  echo "Done. "
+  echo "Done."
   echo "Passing on to $@"
   exec "$@"
 }
