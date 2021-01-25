@@ -2,7 +2,16 @@ image: python:latest
 services:
   - postgres:latest
 variables:
-  POSTGRES_DB: postgres_test_db
+  # taken from project.env. TODO: can we use project.env directly?
+  POSTGRES_USER: project_db_user
+  POSTGRES_PASSWORD: project_db_password
+  POSTGRES_DB: project_db
+
+  DATABASE: postgres
+  DATABASE_HOST: postgres
+  DATABASE_PORT: 5432
+
+  DJANGO_SECRET_KEY: project_django_secret_key
 
 # This folder is cached between builds
 # http://docs.gitlab.com/ee/ci/yaml/README.html#cache
