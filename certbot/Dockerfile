@@ -8,6 +8,9 @@ RUN apt-get install -y openssl certbot netcat inetutils-ping
 COPY entrypoint.sh /
 RUN chmod a+x /entrypoint.sh
 
+COPY renew.sh /
+RUN chmod a+x /renew.sh
+
 
 ENTRYPOINT ["/entrypoint.sh"]
-
+CMD ["/renew.sh"]

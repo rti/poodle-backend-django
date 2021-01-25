@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -x
+# set -x
 set -e
 
 DOMAIN="api.poodle.rtti.de"
