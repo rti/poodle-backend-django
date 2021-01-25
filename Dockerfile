@@ -24,7 +24,7 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 # start the entrypoint script
-ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["./django-entrypoint.sh"]
 
 #
 # development build target
@@ -54,7 +54,8 @@ ENV DJANGO_DEBUG False
 COPY app app
 COPY project project
 COPY manage.py .
-COPY entrypoint.sh .
+COPY django-entrypoint.sh .
+RUN chmod a+x django-entrypoint.sh
 
 # adjust ownership
 RUN chown -R django:django .
