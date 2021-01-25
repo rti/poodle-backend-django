@@ -47,10 +47,9 @@ main() {
   fi
 
   echo "Done."
-  echo "Passing on to $@"
-  exec "$@"
 }
 
 main
 
-
+echo "Passing on to $@"
+exec "$@"
