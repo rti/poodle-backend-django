@@ -1,3 +1,6 @@
+[![pipeline status](https://gitlab.com/rttti/poodle-backend-django/badges/main/pipeline.svg)](https://gitlab.com/rttti/poodle-backend-django/-/commits/main) 
+
+
 # poodle-backend-django
 
 Poodle is a scheduling tool. 
