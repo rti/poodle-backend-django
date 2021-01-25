@@ -5,12 +5,11 @@ RUN apt-get update
 RUN apt-get install -y openssl certbot netcat inetutils-ping
 # TODO cleanup
 
-COPY entrypoint.sh /
-RUN chmod a+x /entrypoint.sh
+COPY certbot-init.sh /
+RUN chmod a+x /certbot-init.sh
 
-COPY renew.sh /
-RUN chmod a+x /renew.sh
+COPY certbot-auto-renew.sh /
+RUN chmod a+x /certbot-auto-renew.sh
 
-
-ENTRYPOINT ["/entrypoint.sh"]
-CMD ["/renew.sh"]
+ENTRYPOINT ["/certbot-init.sh"]
+CMD ["/certbot-auto-renew.sh"]

@@ -7,7 +7,7 @@ SLEEP_BEFORE_RELOAD=60
 
 watch_certs_and_reload() {
   while true; do
-    # inotifywait -e create /etc/letsencrypt/live/api.poodle.rtti.de/;
+    # TODO watch explicitely on the creation of new certificates
     inotifywait /etc/letsencrypt/live/;
     echo "cert change detected, waiting $SLEEP_BEFORE_RELOAD seconds before reload";
     sleep $SLEEP_BEFORE_RELOAD
