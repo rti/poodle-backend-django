@@ -5,7 +5,7 @@ if [ "$DATABASE" = "postgres" ]; then
     echo "Waiting for postgres..."
 
     while ! nc -z $DATABASE_HOST $DATABASE_PORT; do
-      sleep 0.1
+      sleep 0.5
     done
 
     echo "PostgreSQL started"
@@ -18,5 +18,7 @@ python manage.py migrate --noinput
 echo "Collecting static files."
 python manage.py collectstatic --noinput
 
+echo "Done."
+echo "Passing on to $@"
 exec "$@"
 
