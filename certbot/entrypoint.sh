@@ -13,9 +13,9 @@ CURRENT_CERTS_DIR="$LETSENCRYPT_DIR/live/$DOMAIN"
 CURRENT_CERT="$CURRENT_CERTS_DIR/fullchain.pem"
 
 wait_for_nginx() {
+  echo "Waiting for nginx..."
   while ! nc -z nginx 80; do
-    echo "Waiting for nginx..."
-    sleep 1
+    sleep 0.5
   done
 
   echo "Nginx started"
