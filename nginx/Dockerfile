@@ -7,12 +7,12 @@ RUN apt-get update && apt-get install -y inotify-tools \
 COPY ssl.conf /etc/nginx/conf.d/
 COPY default.conf /etc/nginx/conf.d/
 
-COPY setup-certs.sh /
-RUN chmod a+x /setup-certs.sh
+COPY nginx-init-ssl.sh /
+RUN chmod a+x /nginx-init-ssl.sh
 
 COPY nginx-start-watch-certs.sh /
 RUN chmod a+x /nginx-start-watch-certs.sh
 
-ENTRYPOINT ["/setup-certs.sh"]
+ENTRYPOINT ["/nginx-init-ssl.sh"]
 CMD ["/nginx-start-watch-certs.sh"]
 
