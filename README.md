@@ -34,3 +34,8 @@ Direct your browser to http://127.0.0.1:8000/admin/
 ```shell
 docker-compose run --rm django python manage.py test --noinput --failfast
 ```
+### Deploy in production
+
+```shell
+docker-compose -f docker-compose.yml -f docker-compose-production.yml up -d --build
+```
