@@ -1,9 +1,9 @@
-# FROM certbot/certbot:latest
 FROM debian:buster-slim
 
 RUN apt-get update
-RUN apt-get install -y openssl certbot netcat inetutils-ping
-# TODO cleanup
+RUN apt-get install -y openssl certbot netcat\
+      && apt-get remove --purge --auto-remove -y \
+      && rm -rf /var/lib/apt/lists/*
 
 COPY certbot-init.sh /
 RUN chmod a+x /certbot-init.sh
